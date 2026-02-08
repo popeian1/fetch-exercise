@@ -1,5 +1,5 @@
-const URL_MONSTERS = new URL('https://api.mhw-db.com/monsters')
-const URL_WEAPONS = new URL('https://api.mhw-db.com/weapons')
+const URL_MONSTERS = new URL('https://mhw-db.com/monsters');
+const URL_WEAPONS = new URL('https://mhw-db.com/weapons');
 
 async function fetcher(url){
     const request = new Request(url)
@@ -34,17 +34,29 @@ function populateMonsters(monsters){
             article.appendChild(elder_dragon);
         }
 
-        if(monster.elements != []){
-            const elements = document.createElement("p");
+        const elements = document.createElement("p");
+        if(monster.elements.length > 0){
             elements.textContent = "Elements: " + monster.elements;
-            article.appendChild(elements);
+        }else{
+            elements.textContent = "Elements: None";
         }
+        article.appendChild(elements);
 
-        if(monster.ailments != []){
-            const ailments = document.createElement("p");
-            ailments.textContent = "Ailments: " + monster.ailments;
-            article.appendChild(ailments);
+        const ailments = document.createElement("p");
+        if(monster.ailments.length > 0){
+            const ailments_str = "";
+            for(const a of monster.ailments){
+                if(monster.ailments.indexOf(a) < monster.ailments.length - 1){
+                    ailments_str += a + ", ";
+                }else{
+                    ailments_str += a;
+                }
+            }
+            elements.textContent = "Ailments: " + ailments_str;
+        }else{
+            ailments.textContent = "Ailments: None";
         }
+        article.appendChild(ailments);
 
         const locations = document.createElement("p");
         locations.textContent = "Found in: " + monster.locations;

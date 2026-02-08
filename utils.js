@@ -89,15 +89,23 @@ function populateMonsters(monsters){
             }
         }
         if(monster.resistances.length > 0){
-            resistances.textContent = "Strong Against: " + monster.resistances;
+            resistances.textContent = "Strong Against: " + monster.res_str;
         }else{
             resistances.textContent = "Strong Against: None";
         }
         article.appendChild(resistances);
 
         const weaknesses = document.createElement("p");
+        var weak_str = "";
+        for (const w of monster.weaknesses){
+            if(monster.weaknesses.indexOf(w) < monster.weaknesses.length - 1){
+                weak_str += w.element + ", ";
+            }else{
+                weak_str += w.element;
+            }
+        }
         if(monster.weaknesses.length > 0){
-            weaknesses.textContent = "Weak to: " + monster.weaknesses;
+            weaknesses.textContent = "Weak to: " + monster.weak_str;
         }else{
             weaknesses.textContent = "Weak to: None"
         }

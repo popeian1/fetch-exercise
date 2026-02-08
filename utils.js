@@ -36,7 +36,16 @@ function populateMonsters(monsters){
 
         const elements = document.createElement("p");
         if(monster.elements.length > 0){
-            elements.textContent = "Elements: " + monster.elements;
+            var elements_str = "";
+            for(const e of monster.elements){
+                const upper_e = e[0].toUpperCase() + e.slice(1);
+                if(monster.elements.indexOf(e) < monster.elements.length - 1){
+                    elements_str += upper_e + ", ";
+                }else{
+                    elements_str += upper_e;
+                }
+            }
+            elements.textContent = "Elements: " + elements_str;
         }else{
             elements.textContent = "Elements: None";
         }
@@ -44,26 +53,42 @@ function populateMonsters(monsters){
 
         const ailments = document.createElement("p");
         if(monster.ailments.length > 0){
-            const ailments_str = "";
+            var ailments_str = "";
             for(const a of monster.ailments){
                 if(monster.ailments.indexOf(a) < monster.ailments.length - 1){
-                    ailments_str += a + ", ";
+                    ailments_str += a.name + ", ";
                 }else{
-                    ailments_str += a;
+                    ailments_str += a.name;
                 }
             }
-            elements.textContent = "Ailments: " + ailments_str;
+            ailments.textContent = "Ailments: " + ailments_str;
         }else{
             ailments.textContent = "Ailments: None";
         }
         article.appendChild(ailments);
 
         const locations = document.createElement("p");
-        locations.textContent = "Found in: " + monster.locations;
+        var loc_str = "";
+        for (const l of monster.locations){
+            if(monster.locations.indexOf(l) < monster.locations.length - 1){
+                loc_str += l.name + ", ";
+            }else{
+                loc_str += l.name;
+            }
+        }
+        locations.textContent = "Found in: " + loc_str;
         article.appendChild(locations);
 
         const resistances = document.createElement("p");
-        if(monster.resistances != []){
+        var res_str = "";
+        for (const r of monster.resistances){
+            if(monster.resistances.indexOf(r) < monster.resistances.length - 1){
+                res_str += r.element + ", ";
+            }else{
+                res_str += r.element;
+            }
+        }
+        if(monster.resistances.length > 0){
             resistances.textContent = "Strong Against: " + monster.resistances;
         }else{
             resistances.textContent = "Strong Against: None";
@@ -71,7 +96,7 @@ function populateMonsters(monsters){
         article.appendChild(resistances);
 
         const weaknesses = document.createElement("p");
-        if(monster.weaknesses != []){
+        if(monster.weaknesses.length > 0){
             weaknesses.textContent = "Weak to: " + monster.weaknesses;
         }else{
             weaknesses.textContent = "Weak to: None"

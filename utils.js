@@ -19,9 +19,11 @@ function populateMonsters(monsters){
     const div = document.querySelector("#monsters");
     
     for(const monster of monsters){
+        
         if(monster.type == "small"){
             continue;
         }
+
         const article = document.createElement("article");
 
         const name = document.createElement("h2")
@@ -79,37 +81,47 @@ function populateMonsters(monsters){
         locations.textContent = "Found in: " + loc_str;
         article.appendChild(locations);
 
-        const resistances = document.createElement("p");
+        const resistances_list = document.createElement("p");
         var res_str = "";
         for (const r of monster.resistances){
+            const upper_r = r.element[0].toUpperCase() + r.element.slice(1);
             if(monster.resistances.indexOf(r) < monster.resistances.length - 1){
-                res_str += r.element + ", ";
+                res_str += upper_r + ", ";
             }else{
-                res_str += r.element;
+                res_str += upper_r;
             }
         }
         if(monster.resistances.length > 0){
-            resistances.textContent = "Strong Against: " + monster.res_str;
+            resistances_list.textContent = "Strong Against: " + res_str;
         }else{
-            resistances.textContent = "Strong Against: None";
+            resistances_list.textContent = "Strong Against: None";
         }
-        article.appendChild(resistances);
+        article.appendChild(resistances_list);
 
-        const weaknesses = document.createElement("p");
-        var weak_str = "";
+        const minor_list = document.createElement("p");
+        const major_list = document.createElement("p");
+        var minor_str = "";
+        var major_str = "";
         for (const w of monster.weaknesses){
-            if(monster.weaknesses.indexOf(w) < monster.weaknesses.length - 1){
-                weak_str += w.element + ", ";
-            }else{
-                weak_str += w.element;
+            const upper_w = w.element[0].toUpperCase() + w.element.slice(1);
+            var weak_level = "";
+            if(w.stars == 1){
+                continue;
+            }else if(w.stars == 2){
+                weak_level = "minor";
+            }else if(w.stars == 3){
+                weak_level = "major";
+            }
+            if(weak_level == "minor"){
+                minor_str += w.element[0].toUpperCase() + w.element.slice(1) + ", ";
+            }else if(weak_level == "major"){
+                major_str += w.element[0].toUpperCase() + w.element.slice(1) + ", ";
             }
         }
-        if(monster.weaknesses.length > 0){
-            weaknesses.textContent = "Weak to: " + monster.weak_str;
-        }else{
-            weaknesses.textContent = "Weak to: None"
-        }
-        article.appendChild(weaknesses);
+        minor_str = "Minor Weaknesses: " + minor_str.slice(0, -2);
+        major_str = "Major Weaksesses: " + major_str.slice(0, -2);
+        article.appendChild(major_list);
+        article.appendChild(minor_list);
 
         div.appendChild(article);
 

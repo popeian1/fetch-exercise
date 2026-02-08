@@ -8,9 +8,8 @@ async function fetcher(url){
     return fetched_text;
 }
 
-async function initialize(){
+async function initializeMonsters(){
     const monsters = await fetcher(URL_MONSTERS);
-    const weapons = await fetcher(URL_WEAPONS);
     populateMonsters(monsters);
 }
 
@@ -25,6 +24,7 @@ function populateMonsters(monsters){
         }
 
         const article = document.createElement("article");
+        article.createAttribute("class", "monster");
 
         const name = document.createElement("h2")
         name.textContent = monster.name
@@ -118,8 +118,8 @@ function populateMonsters(monsters){
                 major_str += w.element[0].toUpperCase() + w.element.slice(1) + ", ";
             }
         }
-        minor_str = "Minor Weaknesses: " + minor_str.slice(0, -2);
-        major_str = "Major Weaksesses: " + major_str.slice(0, -2);
+        minor_list.textContent = "Minor Weaknesses: " + minor_str.slice(0, -2);
+        major_list.textContent = "Major Weaknesses: " + major_str.slice(0, -2);
         article.appendChild(major_list);
         article.appendChild(minor_list);
 

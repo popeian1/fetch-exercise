@@ -9,7 +9,7 @@ async function fetcher(url){
 }
 
 function redirect(){
-    window.location.href = "monsters.html";
+    window.location.href = "/monsters.html";
 }
 
 async function initializeMonsters(){

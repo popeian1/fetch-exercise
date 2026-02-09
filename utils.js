@@ -144,7 +144,7 @@ function populateWeapons(weapons){
 
     for(const weapon of weapons){
         
-        if(weapon.type != "Great Sword"){
+        if(weapon.type != "great-sword"){
             continue;
         }
 
@@ -152,11 +152,11 @@ function populateWeapons(weapons){
         article.classList.add("weapon");
         
         const name = document.createElement("h2")
-        if(weapon.name.contains("1")){
+        if(weapon.name.includes("1")){
             weapon.name = weapon.name.replace("1", "I");
-        }else if(weapon.name.contains("2")){
+        }else if(weapon.name.includes("2")){
             weapon.name = weapon.name.replace("2", "II");
-        }else if(weapon.name.contains("3")){
+        }else if(weapon.name.includes("3")){
             weapon.name = weapon.name.replace("3", "III");
         }
         name.textContent = weapon.name

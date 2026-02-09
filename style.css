@@ -3,6 +3,20 @@
     src: url("https://fonts.googleapis.com/css2?family=Alan+Sans:wght@300..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
 }
 
+nav {
+    text-align: center;
+    padding-top: 20px;
+}
+
+nav a:link {
+    color: black;
+    font-weight: 600;
+}
+
+nav a:hover {
+    font-weight: 800;
+}
+
 h1 {
     text-align: center;
     padding: 20px 0 20px 0;
@@ -15,28 +29,38 @@ h2 {
 
 p {
     text-align: left;
-    margin: 0 15% 0 15%;
-}
-
-body {
-    background-image: url("https://cdnb.artstation.com/p/assets/images/images/027/720/239/large/pbr-craft-c2.jpg?1592347899");
-    background-size: 100%;
+    margin: 0 15% 5px 15%;
 }
 
 article {
     padding: 20px 0 20px 0;;
 }
 
-#background {
-    background-color: rgba(175, 167, 167, 0.6);
+#monster-body {
+    background-image: url("https://cdnb.artstation.com/p/assets/images/images/027/720/239/large/pbr-craft-c2.jpg?1592347899");
+    background-size: 100%;
+}
 
+#monster-background{
+    background-color: rgba(175, 167, 167, 0.63);
+    margin: 0 15% 0 15%;
+}
+
+#weapons-body {
+    background-image: url("https://img.freepik.com/premium-photo/metal-plate-with-seamless-repeating-pattern-abstract-metallic-background_312563-39.jpg");
+    background-size: 100%;
+}
+
+#weapons-background {
+    background-color: rgba(175, 167, 167, 0.63);
     margin: 0 15% 0 15%;
 }
 
 .monster {
-    background-color: rgba(104, 106, 110, 0.8);
-    border-radius: 10px;
-    margin: 20px 0 20px 0;
+    background-color: rgba(65, 81, 55, 0.556);
+    border-radius: 15%;
+    margin: 0 12% 30px 12%;
+    padding-bottom: 40px;
 }
 
 * {

@@ -8,9 +8,18 @@ async function fetcher(url){
     return fetched_text;
 }
 
+function redirect(){
+    window.location.href = "monsters.html";
+}
+
 async function initializeMonsters(){
     const monsters = await fetcher(URL_MONSTERS);
     populateMonsters(monsters);
+}
+
+async function initializeWeapons(){
+    const weapons = await fetcher(URL_WEAPONS);
+    populateWeapons(weapons);
 }
 
 function populateMonsters(monsters){
@@ -24,7 +33,7 @@ function populateMonsters(monsters){
         }
 
         const article = document.createElement("article");
-        article.createAttribute("class", "monster");
+        article.classList.add("monster");
 
         const name = document.createElement("h2")
         name.textContent = monster.name
@@ -126,4 +135,77 @@ function populateMonsters(monsters){
         div.appendChild(article);
 
     }
+    
+}
+
+function populateWeapons(weapons){
+    
+    const div = document.querySelector("#weapons");
+
+    for(const weapon of weapons){
+        
+        if(weapon.type != "Great Sword"){
+            continue;
+        }
+
+        const article = document.createElement("article");
+        article.classList.add("weapon");
+        
+        const name = document.createElement("h2")
+        if(weapon.name.contains("1")){
+            weapon.name = weapon.name.replace("1", "I");
+        }else if(weapon.name.contains("2")){
+            weapon.name = weapon.name.replace("2", "II");
+        }else if(weapon.name.contains("3")){
+            weapon.name = weapon.name.replace("3", "III");
+        }
+        name.textContent = weapon.name
+        article.appendChild(name);
+
+        const rarity = document.createElement("p");
+        rarity.textContent = "Rarity: " + weapon.rarity.toString();
+        article.appendChild(rarity);
+
+        const dammage = document.createElement("p");
+        dammage.textContent = "Dammage: " + weapon.attack.display.toString();
+        article.appendChild(dammage);
+
+        const affinity = document.createElement("p");
+        affinity.textContent = "Affinity: " + weapon.affinity.toString() + "%";
+        article.appendChild(affinity);
+
+        const elements = document.createElement("p");
+        var elements_str = "Elements: ";
+        if(weapon.elements.length > 0){
+            for(const e of weapon.elements){
+                elements_str += e.damage.toString() + " " + e.type[0].toUpperCase() + e.type.slice(1);
+                if(e.hidden == true){
+                    elements_str += " (Hidden)";
+                }
+                elements_str += ", ";
+            }
+        }else{
+            elements_str += "None";
+        }
+        elements.textContent = elements_str.slice(0, -2);
+        article.appendChild(elements);
+
+        const obtain = document.createElement("p");
+        var obtain_str = "Obtain form: ";
+        if(weapon.craftable == true){
+            obtain_str += "Forging, ";
+        }else{
+            for(const i of weapons){
+                if(i.id == weapon.crafting.previous - 1){
+                    obtain_str += i.name + ", ";
+                }
+            }
+        }
+        obtain_str = obtain_str.slice(0, -2);
+        obtain.textContent = obtain_str;
+        article.appendChild(obtain);
+
+        div.appendChild(article);
+    }
+
 }

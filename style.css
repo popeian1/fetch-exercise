@@ -67,7 +67,8 @@ article {
     background-color: rgb(44, 52, 70);
     display: flex;
     justify-content: center;
-    align-items: center; 
+    align-items: center;
+    height: 100vh;
 }
 
 #statement-background {

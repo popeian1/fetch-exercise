@@ -3,9 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="refresh" content="0" url="https://angiemonsterhunterapi.netlify.app/monsters">
-    <title>MonHun API Redirect</title>
+    <link rel="stylesheet" href="style.css">
+    <title>Monster Hunter API: Monsters</title>
 </head>
-<body>
+<body id="monster-body">
+    <div id="monster-background">
+        <nav>
+            <a href="index.html">Monsters</a> | 
+            <a href="weapons.html">Weapons</a>
+        </nav>
+        <h1>List of Monsters from Monster Hunter World</h1>
+        <div id="monsters"></div>
+        <script src="utils.js"></script>
+        <script>initializeMonsters();</script>
+    </div>
 </body>
 </html>

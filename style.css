@@ -59,13 +59,12 @@ article {
 }
 
 #statement {
-    margin: 0 25% 0 25%;
+    margin: 0 15% 0 15%;
     padding-bottom: 40px;
 }
 
 #statement-body {
     background-color: rgb(44, 52, 70);
-    margin: 15% 0 15% 0;
 }
 
 #statement-background {

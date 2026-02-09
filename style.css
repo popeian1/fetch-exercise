@@ -8,7 +8,7 @@ nav {
     padding-top: 20px;
 }
 
-nav a:link {
+nav a:link, nav a:visited {
     color: black;
     font-weight: 600;
 }

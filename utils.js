@@ -166,12 +166,16 @@ function populateWeapons(weapons){
         rarity.textContent = "Rarity: " + weapon.rarity.toString();
         article.appendChild(rarity);
 
-        const dammage = document.createElement("p");
-        dammage.textContent = "Dammage: " + weapon.attack.display.toString();
-        article.appendChild(dammage);
+        const damage = document.createElement("p");
+        damage.textContent = "Damage: " + weapon.attack.display.toString();
+        article.appendChild(damage);
 
         const affinity = document.createElement("p");
-        affinity.textContent = "Affinity: " + weapon.affinity.toString() + "%";
+        if(weapon.attributes.hasOwnProperty("affinity") == true){
+            affinity.textContent = "Affinity: " + weapon.attributes.affinity.toString() + "%";
+        }else{
+            affinity.textContent = "Affinity: 0%";
+        }
         article.appendChild(affinity);
 
         const elements = document.createElement("p");
@@ -182,7 +186,7 @@ function populateWeapons(weapons){
                 if(e.hidden == true){
                     elements_str += " (Hidden)";
                 }
-                elements_str += ", ";
+                elements_str += " Damage, ";
             }
         }else{
             elements_str += "None";
@@ -191,12 +195,12 @@ function populateWeapons(weapons){
         article.appendChild(elements);
 
         const obtain = document.createElement("p");
-        var obtain_str = "Obtain form: ";
-        if(weapon.craftable == true){
+        var obtain_str = "Obtain from: ";
+        if(weapon.crafting.craftable == true){
             obtain_str += "Forging, ";
         }else{
             for(const i of weapons){
-                if(i.id == weapon.crafting.previous - 1){
+                if(i.id == weapon.crafting.previous){
                     obtain_str += i.name + ", ";
                 }
             }
